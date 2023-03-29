@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EfCoreDialogsState">
+    <option name="keyValueStorage">
+      <map>
+        <entry key="Common:2c7cdf1d-ea8e-4ee4-ad0f-f403ff0d3271:dbContext" value="DiploMate.DAL.AppDbContext" />
+        <entry key="Common:69cfad21-498c-4d49-8e57-8e9f0a1b691b:dbContext" value="DiploMate.DAL.AppDbContext" />
+        <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:noBuild" value="false" />
+        <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:useDefaultConnection" value="true" />
+      </map>
+    </option>
+  </component>
+</project>

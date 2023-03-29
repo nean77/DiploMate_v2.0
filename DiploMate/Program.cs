@@ -1,19 +1,15 @@
-using DiploMate.Other;
-using Microsoft.EntityFrameworkCore;
+using DiploMate.DAL.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddDal(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
+
 
 var app = builder.Build();
 

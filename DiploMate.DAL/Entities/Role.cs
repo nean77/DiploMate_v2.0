@@ -1,4 +1,4 @@
-﻿namespace DiploMate.Other;
+﻿namespace DiploMate.DAL.Entities;
 
 public record Role
 {

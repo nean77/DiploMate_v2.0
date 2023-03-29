@@ -47,7 +47,7 @@ namespace DiploMate.Migrations
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,14 +57,14 @@ namespace DiploMate.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserName = table.Column<string>(type: "nchar(100)", fixedLength: true, maxLength: 100, nullable: false),
                     StudentIdxNo = table.Column<string>(type: "nchar(8)", fixedLength: true, maxLength: 8, nullable: false),
-                    UserEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_Users_UserEntityId",
-                        column: x => x.UserEntityId,
+                        name: "FK_Students_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -76,14 +76,14 @@ namespace DiploMate.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Degree = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tutors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tutors_Users_UserEntityId",
-                        column: x => x.UserEntityId,
+                        name: "FK_Tutors_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -105,21 +105,21 @@ namespace DiploMate.Migrations
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StudentEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TutorEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TutorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Theses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Theses_Students_StudentEntityId",
-                        column: x => x.StudentEntityId,
+                        name: "FK_Theses_Students_StudentId",
+                        column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Theses_Tutors_TutorEntityId",
-                        column: x => x.TutorEntityId,
+                        name: "FK_Theses_Tutors_TutorId",
+                        column: x => x.TutorId,
                         principalTable: "Tutors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
@@ -141,43 +141,43 @@ namespace DiploMate.Migrations
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ThesisEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ThesisId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ThesesStates", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ThesesStates_Theses_ThesisEntityId",
-                        column: x => x.ThesisEntityId,
+                        name: "FK_ThesesStates_Theses_ThesisId",
+                        column: x => x.ThesisId,
                         principalTable: "Theses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_UserEntityId",
+                name: "IX_Students_UserId",
                 table: "Students",
-                column: "UserEntityId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Theses_StudentEntityId",
+                name: "IX_Theses_StudentId",
                 table: "Theses",
-                column: "StudentEntityId");
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Theses_TutorEntityId",
+                name: "IX_Theses_TutorId",
                 table: "Theses",
-                column: "TutorEntityId");
+                column: "TutorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThesesStates_ThesisEntityId",
+                name: "IX_ThesesStates_ThesisId",
                 table: "ThesesStates",
-                column: "ThesisEntityId");
+                column: "ThesisId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tutors_UserEntityId",
+                name: "IX_Tutors_UserId",
                 table: "Tutors",
-                column: "UserEntityId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",

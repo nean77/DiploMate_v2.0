@@ -1,10 +1,6 @@
-﻿using DiploMate.Student;
-using DiploMate.Thesis;
-using DiploMate.ThesisState;
-using DiploMate.Tutor;
-using DiploMate.User;
+﻿using DiploMate.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-namespace DiploMate.Other;
+namespace DiploMate.DAL;
 
 public class AppDbContext : DbContext
 {
@@ -14,27 +10,27 @@ public class AppDbContext : DbContext
 
     }
     
-    public DbSet<UserEntity> Users { get; set; }
-    public DbSet<StudentEntity> Students { get; set; }
-    public DbSet<TutorEntity> Tutors { get; set; }
-    public DbSet<ThesisEntity> Theses { get; set; }
-    public DbSet<ThesisStateEntity> ThesesStates { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Tutor> Tutors { get; set; }
+    public DbSet<Thesis> Theses { get; set; }
+    public DbSet<ThesisState> ThesesStates { get; set; }
     public DbSet<Role> Roles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<UserEntity>()
+        modelBuilder.Entity<User>()
             .Property(u => u.Email)
             .IsRequired();
-        modelBuilder.Entity<UserEntity>()
+        modelBuilder.Entity<User>()
             .Property(u => u.FirstName)
             .HasMaxLength(100).IsFixedLength()
             .IsRequired();
-        modelBuilder.Entity<UserEntity>()
+        modelBuilder.Entity<User>()
             .Property(u => u.LastName)
             .HasMaxLength(100).IsFixedLength()
             .IsRequired();
-        modelBuilder.Entity<UserEntity>()
+        modelBuilder.Entity<User>()
             .Property(u => u.PasswordHash)
             .IsRequired();
         
@@ -42,29 +38,29 @@ public class AppDbContext : DbContext
             .Property(r => r.Id)
             .ValueGeneratedNever();
         
-        modelBuilder.Entity<StudentEntity>()
+        modelBuilder.Entity<Student>()
             .Property(s => s.UserName)
             .HasMaxLength(100).IsFixedLength()
             .IsRequired();
-        modelBuilder.Entity<StudentEntity>()
+        modelBuilder.Entity<Student>()
             .Property(s => s.StudentIdxNo)
             .HasMaxLength(8).IsFixedLength()
             .IsRequired();
-        modelBuilder.Entity<StudentEntity>()
-            .Property(s => s.UserEntityId)
+        modelBuilder.Entity<Student>()
+            .Property(s => s.UserId)
             .IsRequired();
-        modelBuilder.Entity<TutorEntity>()
-            .Property(s => s.UserEntityId)
+        modelBuilder.Entity<Tutor>()
+            .Property(s => s.UserId)
             .IsRequired();
 
-        modelBuilder.Entity<ThesisEntity>()
+        modelBuilder.Entity<Thesis>()
             .Property(t => t.Title)
             .HasMaxLength(500).IsFixedLength()
             .IsRequired();
-        modelBuilder.Entity<ThesisEntity>()
+        modelBuilder.Entity<Thesis>()
             .Property(t => t.StartDate);
 
-        modelBuilder.Entity<ThesisStateEntity>()
+        modelBuilder.Entity<ThesisState>()
             .Property(t => t.MeetingDate)
             .IsRequired();
     }

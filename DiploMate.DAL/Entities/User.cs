@@ -1,8 +1,6 @@
-﻿using DiploMate.Other;
+﻿namespace DiploMate.DAL.Entities;
 
-namespace DiploMate.User;
-
-public record UserEntity
+public record User
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string FirstName { get; set; } = string.Empty;

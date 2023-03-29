@@ -1,10 +1,6 @@
-﻿using DiploMate.Student;
-using DiploMate.Thesis;
-using DiploMate.Tutor;
+﻿namespace DiploMate.DAL.Entities;
 
-namespace DiploMate.ThesisState;
-
-public class ThesisStateEntity
+public class ThesisState
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public byte? SprintNo { get; set; }
@@ -19,6 +15,6 @@ public class ThesisStateEntity
     public DateTime ModifiedDateTime { get; set; }
     public Guid ModifiedBy { get; set; }
     
-    public Guid ThesisEntityId { get; set; }
-    public virtual ThesisEntity ThesisEntity { get; set; }
+    public Guid ThesisId { get; set; }
+    public virtual Thesis Thesis { get; set; }
 }

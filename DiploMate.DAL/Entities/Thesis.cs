@@ -1,10 +1,6 @@
-﻿using DiploMate.Student;
-using DiploMate.ThesisState;
-using DiploMate.Tutor;
+﻿namespace DiploMate.DAL.Entities;
 
-namespace DiploMate.Thesis;
-
-public record ThesisEntity
+public record Thesis
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Title { get; set; } = string.Empty;
@@ -19,9 +15,9 @@ public record ThesisEntity
     public DateTime ModifiedDateTime { get; set; }
     public Guid ModifiedBy { get; set; }
     
-    public Guid StudentEntityId { get; set; }
-    public Guid TutorEntityId { get; set; }
-    public virtual StudentEntity StudentEntity { get; set; }
-    public virtual TutorEntity TutorEntity { get; set; }
-    public virtual List<ThesisStateEntity> States { get; set; }
+    public Guid StudentId { get; set; }
+    public Guid TutorId { get; set; }
+    public virtual Student Student { get; set; }
+    public virtual Tutor Tutor { get; set; }
+    public virtual List<ThesisState> States { get; set; }
 }
