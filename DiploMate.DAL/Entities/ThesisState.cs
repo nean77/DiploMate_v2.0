@@ -1,20 +1,20 @@
-﻿namespace DiploMate.DAL.Entities;
+﻿namespace DiploMate.DAL;
 
-public class ThesisState
+public record ThesisState
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public byte? SprintNo { get; set; }
-    public DateTime MeetingDate { get; set; }
-    public byte? ThesisProgress { get; set; }
-    public bool? ProjectAccepted { get; set; }
-    public bool? ProjectFinished { get; set; }
-    public int? PagesCount { get; set; }
-    public bool? ThesisFinished { get; set; }
-    public DateTime CreateDateTime { get; set; }
-    public Guid CreatedBy { get; set; }
-    public DateTime ModifiedDateTime { get; set; }
-    public Guid ModifiedBy { get; set; }
+    internal Guid Id { get; set; } = Guid.NewGuid();
+    internal byte? SprintNo { get; set; }
+    internal DateTime MeetingDate { get; set; }
+    internal byte? ThesisProgress { get; set; }
+    internal bool? ProjectAccepted { get; set; }
+    internal bool? ProjectFinished { get; set; }
+    internal int? PagesCount { get; set; }
+    internal bool? ThesisFinished { get; set; }
+    internal DateTime CreateDateTime { get; set; }
+    internal Guid CreatedBy { get; set; }
+    internal DateTime ModifiedDateTime { get; set; }
+    internal Guid ModifiedBy { get; set; }
     
-    public Guid ThesisId { get; set; }
-    public virtual Thesis Thesis { get; set; }
+    internal Guid ThesisId { get; set; }
+    internal virtual Thesis Thesis { get; set; }
 }

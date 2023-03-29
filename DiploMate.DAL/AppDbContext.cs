@@ -1,5 +1,4 @@
-﻿using DiploMate.DAL.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 namespace DiploMate.DAL;
 
 public class AppDbContext : DbContext

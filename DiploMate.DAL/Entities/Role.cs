@@ -1,7 +1,7 @@
-﻿namespace DiploMate.DAL.Entities;
+﻿namespace DiploMate.DAL;
 
 public record Role
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
+    internal int Id { get; set; }
+    internal string Name { get; set; }
 }

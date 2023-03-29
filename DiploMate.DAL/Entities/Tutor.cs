@@ -1,10 +1,10 @@
-﻿namespace DiploMate.DAL.Entities;
+﻿namespace DiploMate.DAL;
 
 public record Tutor
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public string? Degree { get; set; }
+    internal Guid Id { get; set; } = Guid.NewGuid();
+    internal string? Degree { get; set; }
 
-    public Guid UserId { get; set; }
-    public virtual User User { get; set; }
+    internal Guid UserId { get; set; }
+    internal virtual User User { get; set; }
 }

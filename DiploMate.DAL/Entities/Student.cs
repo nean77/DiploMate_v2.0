@@ -1,11 +1,11 @@
-﻿namespace DiploMate.DAL.Entities;
+﻿namespace DiploMate.DAL;
 
 public record Student
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public string UserName { get; set; } = string.Empty; // gdx...
-    public string StudentIdxNo { get; set; } = string.Empty; // index 
+    internal Guid Id { get; set; } = Guid.NewGuid();
+    internal string UserName { get; set; } = string.Empty; // gdx...
+    internal string StudentIdxNo { get; set; } = string.Empty; // index 
     
-    public Guid UserId { get; set; }
-    public virtual User User { get; set; }
+    internal Guid UserId { get; set; }
+    internal virtual User User { get; set; }
 }
