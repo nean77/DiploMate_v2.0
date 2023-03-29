@@ -16,5 +16,9 @@ public class DiploMateMappingProfile : Profile
             .ReverseMap()
             .ForMember(dest => dest.Role,
                 opt => opt.MapFrom(src => Enum.GetName(typeof(Role), src.RoleId)));
+
+        CreateMap<Login, LoginDto>()
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToUpper()))
+            .ReverseMap();
     }
 }

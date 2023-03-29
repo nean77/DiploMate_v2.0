@@ -20,10 +20,9 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost("login")]
-    public ActionResult Login([FromBody]Login login)
+    public IActionResult Login([FromBody]Login login)
     {
-        //string token = _accountService.GenerateJwt(dto);
-        return Ok(/*token*/);
-
+        string token =  _accountService.GenerateJwt(login);
+        return Ok(token);
     }
 }

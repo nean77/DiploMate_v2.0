@@ -20,4 +20,13 @@ public class AccountService : IAccountService
 
         await _repository.RegisterUser(dto);
     }
+
+    public string GenerateJwt(Login login)
+    {
+        var dto = _mapper.Map<LoginDto>(login);
+
+        var token = _repository.GenerateJwt(dto);
+
+        return token;
+    }
 }
