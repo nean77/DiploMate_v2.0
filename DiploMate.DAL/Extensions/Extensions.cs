@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using DiploMate.DAL.Models;
+using DiploMate.DAL.Repositories;
 using DiploMate.DAL.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -44,6 +45,7 @@ public static class Extensions
         });
         
         var authenticationSettings = new AuthenticationSettings();
+        services.AddSingleton(authenticationSettings);
 
         configuration.GetSection("Authentication").Bind(authenticationSettings);
         
@@ -72,7 +74,7 @@ public static class Extensions
                 configuration.GetConnectionString("DefaultConnection"), b=>b.MigrationsAssembly("DiploMate")
             ));
         
-        
+        services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
         

@@ -2,22 +2,22 @@
 
 public record Thesis
 {
-    internal Guid Id { get; set; } = Guid.NewGuid();
-    internal string Title { get; set; } = string.Empty;
-    internal string? Description { get; set; }
-    internal DateTime StartDate { get; set; }
-    internal DateTime? ApproximateEndDate { get; set; }
-    internal DateTime? EndDate { get; set; }
-    internal int? ApproximatePagesCount { get; set; }
-    internal string? Hyperlink { get; set; }
-    internal DateTime CreateDateTime { get; set; }
-    internal Guid CreatedBy { get; set; }
-    internal DateTime ModifiedDateTime { get; set; }
-    internal Guid ModifiedBy { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Title { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime? ApproximateEndDate { get; set; }
+    public DateTime? EndDate { get; set; }
+    public int? ApproximatePagesCount { get; set; }
+    public string? Hyperlink { get; set; }
+    public DateTime CreateDateTime { get; set; }
+    public Guid CreatedBy { get; set; }
+    public DateTime ModifiedDateTime { get; set; }
+    public Guid ModifiedBy { get; set; }
     
-    internal Guid StudentId { get; set; }
-    internal Guid TutorId { get; set; }
-    internal virtual Student Student { get; set; }
-    internal virtual Tutor Tutor { get; set; }
-    internal virtual List<ThesisState> States { get; set; }
+    public Guid StudentId { get; set; }
+    public Guid TutorId { get; set; }
+    public virtual Student Student { get; set; }
+    public virtual Tutor Tutor { get; set; }
+    public virtual List<ThesisState> States { get; set; }
 }

@@ -2,6 +2,6 @@
 
 public record Role
 {
-    internal int Id { get; set; }
-    internal string Name { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
 }

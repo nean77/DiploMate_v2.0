@@ -2,9 +2,9 @@
 
 public record Tutor
 {
-    internal Guid Id { get; set; } = Guid.NewGuid();
-    internal string? Degree { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string? Degree { get; set; }
 
-    internal Guid UserId { get; set; }
-    internal virtual User User { get; set; }
+    public Guid UserId { get; set; }
+    public virtual User User { get; set; }
 }

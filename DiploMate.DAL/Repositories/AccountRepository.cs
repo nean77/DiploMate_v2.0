@@ -24,19 +24,45 @@ public class AccountRepository : IAccountRepository
 
     public async Task RegisterUser(RegisterUserDto registerUser)
     {
-        var newUser = new User()
+        await using var transaction = await _ctx.Database.BeginTransactionAsync();
+        try
         {
-            FirstName = registerUser.FirstName,
-            LastName = registerUser.LastName,
-            Email = registerUser.Email,
-            NormalizedEmail = registerUser.Email.ToUpper(),
-            RoleId = registerUser.RoleId
-        };
-        var hashedPwd = _passwordHasher.HashPassword(newUser, registerUser.Password);
-        newUser.PasswordHash = hashedPwd;
+            var newUser = new User()
+            {
+                FirstName = registerUser.FirstName,
+                LastName = registerUser.LastName,
+                Email = registerUser.Email,
+                NormalizedEmail = registerUser.Email.ToUpper(),
+                RoleId = registerUser.RoleId
+            };
+            var hashedPwd = _passwordHasher.HashPassword(newUser, registerUser.Password);
+            newUser.PasswordHash = hashedPwd;
 
-        _ctx.Users.Add(newUser);
-        await _ctx.SaveChangesAsync();
+            _ctx.Users.Add(newUser);
+            await _ctx.SaveChangesAsync();
+            await AddAccount(newUser);
+            await transaction.CommitAsync();
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            throw new Exception(ex.Message, ex);
+        }
+    }
+
+    private async Task AddAccount(User newUser)
+    {
+        switch (newUser.RoleId)
+        {
+            case 1:
+                _ctx.Tutors.Add(new Tutor() { UserId = newUser.Id });
+                await _ctx.SaveChangesAsync();
+                break;
+            case 2:
+                _ctx.Students.Add(new Student() { UserId = newUser.Id });
+                await _ctx.SaveChangesAsync();
+                break;
+        }
     }
 
     public string GenerateJwt(LoginDto loginDto)

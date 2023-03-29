@@ -36,15 +36,15 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Role>()
             .Property(r => r.Id)
             .ValueGeneratedNever();
-        
+
         modelBuilder.Entity<Student>()
             .Property(s => s.UserName)
             .HasMaxLength(100).IsFixedLength()
-            .IsRequired();
+            ;//.IsRequired();
         modelBuilder.Entity<Student>()
             .Property(s => s.StudentIdxNo)
             .HasMaxLength(8).IsFixedLength()
-            .IsRequired();
+            ;//.IsRequired();
         modelBuilder.Entity<Student>()
             .Property(s => s.UserId)
             .IsRequired();

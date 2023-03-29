@@ -2,10 +2,10 @@
 
 public record Student
 {
-    internal Guid Id { get; set; } = Guid.NewGuid();
-    internal string UserName { get; set; } = string.Empty; // gdx...
-    internal string StudentIdxNo { get; set; } = string.Empty; // index 
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string UserName { get; set; }// gdx...
+    public string StudentIdxNo { get; set; } // index 
     
-    internal Guid UserId { get; set; }
-    internal virtual User User { get; set; }
+    public Guid UserId { get; set; }
+    public virtual User User { get; set; }
 }

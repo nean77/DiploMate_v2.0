@@ -6,5 +6,24 @@ namespace DiploMate.User;
 [ApiController]
 public class AccountController : ControllerBase
 {
-    
+    private readonly IAccountService _accountService;
+
+    public AccountController(IAccountService accountService)
+    {
+        _accountService = accountService;
+    }
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterUser([FromBody]RegisterUser registerUser)
+    {
+        await  _accountService.RegisterUser(registerUser);
+        return Ok();
+    }
+
+    [HttpPost("login")]
+    public ActionResult Login([FromBody]Login login)
+    {
+        //string token = _accountService.GenerateJwt(dto);
+        return Ok(/*token*/);
+
+    }
 }
