@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiploMate.DAL.Models;
+using DiploMate.DAL.Repositories;
 using DiploMate.User;
 
 namespace DiploMate.Other;
@@ -20,5 +21,9 @@ public class DiploMateMappingProfile : Profile
         CreateMap<Login, LoginDto>()
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToUpper()))
             .ReverseMap();
+
+        CreateMap<StudentDto, Student.Student>()
+            .ReverseMap()
+            .ForMember(dest => dest.UserId, opt => opt.Ignore());
     }
 }

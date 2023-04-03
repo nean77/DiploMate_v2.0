@@ -22,7 +22,7 @@ public class AccountRepository : IAccountRepository
     }
 
 
-    public async Task RegisterUser(RegisterUserDto registerUser)
+    public async Task<Guid> RegisterUser(RegisterUserDto registerUser, StudentDto studentDto = null)
     {
         await using var transaction = await _ctx.Database.BeginTransactionAsync();
         try
@@ -40,8 +40,9 @@ public class AccountRepository : IAccountRepository
 
             _ctx.Users.Add(newUser);
             await _ctx.SaveChangesAsync();
-            await AddAccount(newUser);
+            await AddAccount(newUser, studentDto);
             await transaction.CommitAsync();
+            return newUser.Id;
         }
         catch (Exception ex)
         {
@@ -50,7 +51,7 @@ public class AccountRepository : IAccountRepository
         }
     }
 
-    private async Task AddAccount(User newUser)
+    private async Task AddAccount(User newUser, StudentDto studentDto = null)
     {
         switch (newUser.RoleId)
         {
@@ -59,7 +60,13 @@ public class AccountRepository : IAccountRepository
                 await _ctx.SaveChangesAsync();
                 break;
             case 2:
-                _ctx.Students.Add(new Student() { UserId = newUser.Id });
+                var student = new Student() { UserId = newUser.Id };
+                if (studentDto is not null)
+                {
+                    student.UserName = studentDto.UserName;
+                    student.StudentIdxNo = studentDto.StudentIdxNo;
+                }
+                _ctx.Students.Add(student);
                 await _ctx.SaveChangesAsync();
                 break;
         }
