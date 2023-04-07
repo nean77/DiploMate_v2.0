@@ -20,9 +20,7 @@
 
     <ItemGroup>
       <Folder Include="Migrations\" />
-      <Folder Include="Thesis" />
       <Folder Include="ThesisState" />
-      <Folder Include="Tutor" />
     </ItemGroup>
 
     <ItemGroup>

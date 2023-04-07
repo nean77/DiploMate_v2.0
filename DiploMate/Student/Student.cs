@@ -4,12 +4,12 @@ namespace DiploMate.Student;
 
 public class Student
 {
-    public Guid Guid { get; private set; }
-    public Name FirstName { get; private set; } 
-    public Name LastName { get; private set; } 
-    public Email Email { get; private set; } 
-    public string UserName { get; private set; }// gdx...
-    public string StudentIdxNo { get; private set; } // index 
+    public Guid Guid { get; }
+    public Name FirstName { get; } 
+    public Name LastName { get; } 
+    public Email Email { get; } 
+    public string UserName { get; }// gdx...
+    public string StudentIdxNo { get; } // index 
 
     public Student(Guid guid, Name firstName, Name lastName, Email email, string userName, string studentIdxNo)
     {
