@@ -75,6 +75,9 @@ public static class Extensions
             ));
         
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped(typeof(IRepository<StudentDto>), typeof(StudentRepository));
+        services.AddScoped(typeof(IRepository<TutorDto>), typeof(TutorRepository)); 
+        services.AddScoped(typeof(IRepository<ThesisDto>), typeof(ThesisRepository)); 
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
         
